@@ -1,10 +1,9 @@
-// import Express from "express";
+import express from "express";
+import { GetUsuario } from "../Controller/ValidarUsuario.js";
 
-// import {GetUsuario} from "./Controller/validarUsuario.js"
+const validarUsuario = express.Router();
 
-// const validarUsuario = Express();
+// Definir la ruta para validar usuario
+validarUsuario.get('/:Usuario/:Contrasena', GetUsuario);
 
-// validarUsuario.get('/:Usuario?/:Contrasena', GetUsuario)
-
-
-// export { validarUsuario }
+export { validarUsuario };
