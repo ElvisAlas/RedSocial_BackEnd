@@ -16,16 +16,10 @@ const GetUsuario = async (req, res) => {
         const params = [Usuario, Contrasena];
 
         const result = await db.query(sql, params);
-
-        console.log(result[0].validado)
-        
+              
         if (result[0].validado === "1") {
-            
-           
             res.status(200).json({ success: true, message: "Usuario validado correctamente." });
         } else {
-            
-      
             res.status(401).json({ success: false, message: "Usuario o contraseña incorrectos." });
         }
     } catch (error) {
