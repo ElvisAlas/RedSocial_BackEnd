@@ -1,5 +1,7 @@
+
 import express from 'express';
 import { validarUsuario } from './routers/ValidarUsuario.js';
+import { publicacion } from './Routers/publicacionUsuario.js'
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -9,14 +11,20 @@ app.use(express.json());
 
 // Middleware para permitir el acceso a través de CORS
 app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+  const allowedOrigins = ['http://localhost:3000', 'http://localhost:5173'];
+  const origin = req.headers.origin;
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+  }
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.setHeader('Access-Control-Allow-Credentials', true); 
   next();
 });
 
 // Rutas
 app.use('/api/validarUsuario', validarUsuario);
+app.use('/api/publicacion', publicacion);
 
 // Manejo de rutas no encontradas
 app.use((req, res, next) => {
