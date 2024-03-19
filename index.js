@@ -25,6 +25,9 @@ app.use((req, res, next) => {
 // Rutas
 app.use('/api/validarUsuario', validarUsuario);
 app.use('/api/publicacion', publicacion);
+app.use('/api/publicacion/comentarios', publicacion);
+app.use('/api/publicacion/comentario', publicacion);
+
 
 // Manejo de rutas no encontradas
 app.use((req, res, next) => {
